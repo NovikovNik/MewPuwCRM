@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.post('/', status_code=status.HTTP_201_CREATED, response_model=schemas.GetUser)
-def create_user(request: schemas.User, db: Session = Depends(get_db), get_current_user: schemas.User = Depends(oauth2.get_current_user)):
+def create_user(request: schemas.User, db: Session = Depends(get_db)):
     '''Only HeadAdmin (created while init new database) can create other users!'''
     user = models.User(name=request.name, password=Hash.bcrypt(
         request.password), email=request.email)
@@ -26,7 +26,7 @@ def create_user(request: schemas.User, db: Session = Depends(get_db), get_curren
 
 
 @router.get('/', response_model=List[schemas.GetUser])
-def get_users(db: Session = Depends(get_db)):
+def get_users(db: Session = Depends(get_db), get_current_user: schemas.User = Depends(oauth2.get_current_user)):
     user = db.query(models.User).all()
     return user
 
