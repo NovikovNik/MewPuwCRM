@@ -1,4 +1,5 @@
-from lib2to3.pytree import Base
+from sqlalchemy import MetaData
+from utils.hashing import Hash
 from repo.schemas import *
 from repo.models import *
 from utils.database import engine
@@ -7,8 +8,6 @@ from routers import user, login
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import FastAPI
 
-
-Base.metadata.create_all(engine)
 
 app = FastAPI()
 app.include_router(user.router)
@@ -31,3 +30,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+if __name__ == "__main__":
+    if debug := True == True:
+        Base.metadata.drop_all(engine)  # Убрать позже
+        user = User(name="HeadAdmin", password=Hash.bcrypt(
+        "Test"), email="test@test.com")
+    metadata_obj = MetaData()
+    metadata_obj.create_all(engine)
