@@ -1,3 +1,4 @@
+from repo.schemas import GetUser
 from utils.token_generator import create_access_token
 from utils.database import get_db
 from fastapi.security import OAuth2PasswordRequestForm

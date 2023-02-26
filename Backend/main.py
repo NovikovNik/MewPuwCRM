@@ -1,4 +1,4 @@
-from sqlalchemy import MetaData
+from lib2to3.pytree import Base
 from utils.hashing import Hash
 from repo.schemas import *
 from repo.models import *
@@ -18,9 +18,11 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 origins = [
     "http://localhost",
     "https://localhost:8000",
+    "https://localhost:3000",
     "http://localhost",
     "https://localhost",
     "http://localhost:8000",
+    "http://0.0.0.0:8000"
 ]
 
 app.add_middleware(
@@ -32,9 +34,8 @@ app.add_middleware(
 )
 
 if __name__ == "__main__":
-    if debug := True == True:
+    if debug := True == False:
         Base.metadata.drop_all(engine)  # Убрать позже
         user = User(name="HeadAdmin", password=Hash.bcrypt(
         "Test"), email="test@test.com")
-    metadata_obj = MetaData()
-    metadata_obj.create_all(engine)
+    Base.metadata.create_all(engine)
