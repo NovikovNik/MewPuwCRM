@@ -1,0 +1,4 @@
+.gradient-background {
+  margin: 1px;
+  background-image: linear-gradient(90deg, rgba(121,75,126,1) 9%, rgba(230,166,237,1) 97%);
+}

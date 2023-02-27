@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/login.css'
 
 export default function LoginScreen() {
 
     const [data, setData] = useState({ email: '', password: '' })
     const [serverAnswer, setAnswer] = useState('')
-    useEffect(() => { console.log(data) }, [data])
+    useEffect(() => {
+        document.body.classList.add('gradient-background');
+        return () => {
+            document.body.classList.remove('gradient-background');
+        }
+    })
 
     const history = useNavigate();
 
@@ -50,7 +56,7 @@ export default function LoginScreen() {
                 <div className="alert alert-info" style={{ visibility: serverAnswer ? 'visible' : 'hidden' }}>
                     Message: {serverAnswer}
                 </div>
-                <div name="form" style={{ alignContent: "center", borderStyle: 'solid', paddingTop: '15px', paddingLeft: '10px', paddingRight: '10px' }}>
+                <div name="form" style={{ background: '#fff', alignContent: "center", borderStyle: 'solid', paddingTop: '15px', paddingLeft: '10px', paddingRight: '10px' }}>
                     <h2>Login</h2>
                     <div className={'form-group'}>
                         <label htmlFor="username">Username</label>
