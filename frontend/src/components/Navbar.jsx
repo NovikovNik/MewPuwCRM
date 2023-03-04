@@ -12,22 +12,25 @@ export default function Menu(props) {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg mb-2" style={{ backgroundColor: '#D3D3D3' }} data-bs-theme="light">
+            <nav className="navbar navbar-expand-lg mb-2 sticky-top" style={{ backgroundColor: '#D3D3D3' }} data-bs-theme="light">
                 <div className="container-fluid">
-                    <a className="navbar-brand h2" href="/#">MewPuw</a>
+                    <a className="navbar-brand h2" href="/#">MewPuw CRM</a>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mr-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active h2" aria-current="page" href="#/">Home</a>
+                                <a className="nav-link active h2" aria-current="page" href="#/">Главная страница</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link active h2" aria-current="page" href="#/">Profile</a>
+                                <a className="nav-link active h2" aria-current="page" href="#/">Профиль</a>
                             </li>
                             <li className="nav-item" >
                             </li>
                         </ul>
                         <div>
-                            <a className="nav-link active h2" aria-current="page" onClick={logOut} href="#/">Logout</a>
+                            <a className="nav-link active h2" aria-current="page" onClick={logOut} href="#/">Test User (Admin)</a>
+                        </div>
+                        <div style={{marginLeft: 10}}>
+                            <a className="nav-link active h2" aria-current="page" onClick={logOut} href="#/">Выйти</a>
                         </div>
                     </div>
                 </div>
