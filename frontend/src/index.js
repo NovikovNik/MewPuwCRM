@@ -4,13 +4,16 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import LoginScreen from './scenes/LoginScreen';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Menu from './components/Navbar';
+import Home from './scenes/Home';
 
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/login" element={<LoginScreen/>} />
+        <Route path="/home" element={<Menu><Home/></Menu>} />
       </Routes>
     </BrowserRouter>
   );
