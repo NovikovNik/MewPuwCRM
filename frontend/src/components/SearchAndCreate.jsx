@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SearchCreateBar = () => {
@@ -11,9 +10,9 @@ const SearchCreateBar = () => {
                 <button className="btn btn-outline-secondary ml-2" style={{marginLeft: 10}}>Действия</button>
             </div>
             <div className="input-group col">
-                <input type="text" class="form-control" placeholder="Поиск..." aria-label="Поиск" />
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Поиск</button>
+                <input type="text" className="form-control" placeholder="Поиск..." aria-label="Поиск" />
+                <div className="input-group-append">
+                    <button className="btn btn-outline-secondary" type="button">Поиск</button>
                 </div>
             </div>
         </div>
