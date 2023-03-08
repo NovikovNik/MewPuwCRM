@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "./Footer";
+import { BsDatabase, BsArrowRightSquare, BsPersonBadge } from "react-icons/bs";
 
 export default function Menu(props) {
 
@@ -18,10 +19,10 @@ export default function Menu(props) {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mr-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active h2" aria-current="page" href="#/">Главная страница</a>
+                                <a className="nav-link active h2" aria-current="page" href="#/">Главная страница {<BsDatabase/>}</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link active h2" aria-current="page" href="#/">Профиль</a>
+                                <a className="nav-link active h2" aria-current="page" href="#/">Профиль {<BsPersonBadge/>}</a>
                             </li>
                             <li className="nav-item" >
                             </li>
@@ -30,7 +31,7 @@ export default function Menu(props) {
                             <a className="nav-link active h2" aria-current="page" onClick={logOut} href="#/">Test User (Admin)</a>
                         </div>
                         <div style={{marginLeft: 10}}>
-                            <a className="nav-link active h2" aria-current="page" onClick={logOut} href="#/">Выйти</a>
+                            <a className="nav-link active h2" aria-current="page" onClick={logOut} href="#/">Выйти {<BsArrowRightSquare/>}</a>
                         </div>
                     </div>
                 </div>
