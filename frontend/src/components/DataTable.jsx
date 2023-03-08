@@ -54,9 +54,9 @@ const DataTable = () => {
 
         // Loop through each row and find the elements you need
         rows.forEach((row) => {
-            const statusValue = row.querySelector("td:nth-child(3)")
+            const statusValue = row.querySelector("td:nth-child(3) > div")
 
-            const tmp = getBadgeData(statusValue.id)
+            const tmp = getBadgeData(statusValue.parentNode.id)
 
             statusValue.classList.add(...tmp[0]);
             statusValue.style.display = "flex";
@@ -64,7 +64,7 @@ const DataTable = () => {
             statusValue.style.alignItems = "center";
             statusValue.innerText = tmp[1]
 
-            const idValue = row.querySelector("td:first-child")
+            const idValue = row.querySelector("td:first-child > div")
             const id = idValue.innerText
             idValue.innerHTML = `<a href="#" className="link-primary">${id}</a>`
         });
@@ -79,7 +79,7 @@ const DataTable = () => {
 
     return (
         <>
-            <Table ref={tableRef} bordered hover variant="light">
+            <Table ref={tableRef} bordered hover striped variant="light">
                 <thead>
                     <tr>
                         {Object.keys(newData[0]).map((key, index, array) => (
@@ -91,7 +91,7 @@ const DataTable = () => {
                     {newData.map((item, index) => (
                         <tr key={index}>
                             {Object.keys(item).map((key, index) => (
-                                <td key={key} id={index === 2 ? item[key] : null}>{item[key]}</td>
+                                <td key={key} id={index === 2 ? item[key] : null}><div>{item[key]}</div></td>
                             ))}
                             <td>
                                 <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
