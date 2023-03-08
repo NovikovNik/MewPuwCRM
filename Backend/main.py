@@ -34,7 +34,7 @@ app.add_middleware(
 )
 
 if __name__ == "__main__":
-    if debug := True == False:
+    if debug := True == True:
         Base.metadata.drop_all(engine)  # Убрать позже
         user = User(name="HeadAdmin", password=Hash.bcrypt(
         "Test"), email="test@test.com")

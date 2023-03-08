@@ -22,6 +22,16 @@ def create_user(request: schemas.User, db: Session = Depends(get_db)):
     db.add(user)
     db.commit()
     db.refresh(user)
+    create_user_role(db, user)
+    return user
+
+
+def create_user_role(db, user):
+    '''Only HeadAdmin (created while init new database) can create other users!'''
+    role = models.UserRoles(user_id = user.id, user_role = "Manager")
+    db.add(role)
+    db.commit()
+    db.refresh(user)
     return user
 
 
