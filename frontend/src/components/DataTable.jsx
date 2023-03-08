@@ -39,6 +39,15 @@ const DataTable = () => {
             case "2":
                 badge = classNames("badge", "bg-secondary", "mt-2")
                 return [badge.split(' '), 'Неизвестно']
+            case "3":
+                badge = classNames("badge", "bg-warning", "mt-2")
+                return [badge.split(' '), 'Внимание']
+            case "4":
+                badge = classNames("badge", "bg-info", "mt-2")
+                return [badge.split(' '), 'Новый']
+            case "5":
+                badge = classNames("badge", "bg-dark", "mt-2")
+                return [badge.split(' '), 'Отъезд']
             default:
                 console.log('error')
                 return [['badge', 'bg-danger', 'mt-2'], 'Ошибка']
@@ -73,8 +82,8 @@ const DataTable = () => {
     const headerLocalisation = () => {
         const table = tableRef.current;
         const row = table.querySelector("thead tr");
-            console.log(row)
-        
+        console.log(row)
+
     }
 
     return (

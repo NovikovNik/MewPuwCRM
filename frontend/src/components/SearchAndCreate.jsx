@@ -1,13 +1,20 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsDatabaseAdd } from "react-icons/bs";
 
-const SearchCreateBar = () => {
+const SearchCreateBar = (props) => {
+
+    const { openModal } = props
+
+    const createModal = (e) => {
+        e.preventDefault()
+        openModal(true)
+    }
 
     return (
         <div className="row mb-2">
             <div className="col-8">
-                <button className="btn btn-outline-secondary mr-2">Добавить</button>
+                <button className="btn btn-outline-secondary mr-2" onClick={createModal}>Добавить {<BsDatabaseAdd/>}</button>
                 <button className="btn btn-outline-secondary ml-2" style={{marginLeft: 10}}>Действия</button>
             </div>
             <div className="input-group col">

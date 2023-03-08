@@ -16,7 +16,7 @@ const data = [
     {
         id: 2,
         name: "Amogus",
-        status: 3,
+        status: 4,
         comment: "Test Comment Test Comment Test Comment Test Comment",
         address: "Saint Petersburg",
     },
@@ -30,7 +30,7 @@ const data = [
     {
         id: 4,
         name: "Dementiy",
-        status: 2,
+        status: 3,
         comment: "Test Comment",
         address: "Moscow",
     },
@@ -44,7 +44,7 @@ const data = [
     {
         id: 6,
         name: "Test Name",
-        status: 1,
+        status: 6,
         comment: "Test Comment",
         address: "Moscow",
     },
@@ -65,7 +65,7 @@ const data = [
     {
         id: 9,
         name: "Test Name",
-        status: 1,
+        status: 5,
         comment: "Test Comment",
         address: "Moscow",
     },
