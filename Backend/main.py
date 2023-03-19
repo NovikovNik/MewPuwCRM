@@ -1,17 +1,17 @@
-from lib2to3.pytree import Base
-from utils.hashing import Hash
 from repo.schemas import *
 from repo.models import *
-from utils.database import engine
 from fastapi.middleware.cors import CORSMiddleware
-from routers import user, login
+from routers import user, login, items
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import FastAPI
+from sqlalchemy import create_engine
+from repo.models import Base
 
 
 app = FastAPI()
 app.include_router(user.router)
 app.include_router(login.router)
+app.include_router(items.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -33,9 +33,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-if __name__ == "__main__":
-    if debug := True == True:
-        Base.metadata.drop_all(engine)  # Убрать позже
-        user = User(name="HeadAdmin", password=Hash.bcrypt(
-        "Test"), email="test@test.com")
-    Base.metadata.create_all(engine)
+
+@app.on_event("startup")
+async def startup():
+    SQLALCHEMY_DATABASE_URL = "sqlite:///./database.db"
+    engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={
+                       "check_same_thread": False})
+    if debug := False == True:
+        Base.metadata.drop_all(engine)
+        Base.metadata.create_all(engine)

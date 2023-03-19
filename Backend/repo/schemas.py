@@ -1,7 +1,4 @@
-from typing import List
 from pydantic import BaseModel
-from typing import List
-
         
 class User(BaseModel):
     name: str
@@ -26,3 +23,8 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: str
+
+
+class ItemCreate(BaseModel):
+    title: str
+    description: str
