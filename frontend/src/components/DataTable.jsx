@@ -10,6 +10,7 @@ const DataTable = (props) => {
 
     const tableRef = useRef(null);
     const [page, setPage] = useState(1)
+    
     let newData;
     let data;
     let startIndex;
@@ -78,15 +79,16 @@ const DataTable = (props) => {
 
     const findElementsByRow = () => {
         // Get a reference to the table element
+
         const table = tableRef.current;
+        const index = findRowIndex(table)
 
         // Select all rows in the table
         const rows = table.querySelectorAll("tbody tr");
 
         // Loop through each row and find the elements you need
         rows.forEach((row) => {
-            console.log(startIndex)
-            const statusValue = row.querySelector(`td:nth-child(2) > div`)
+            const statusValue = row.querySelector(`td:nth-child(${index}) > div`)
 
             const tmp = getBadgeData(statusValue.parentNode.id)
 
@@ -102,6 +104,18 @@ const DataTable = (props) => {
         });
     };
 
+    const findRowIndex = (table) => {
+        const headerCells = table.querySelector("thead tr").cells;
+        let statusIndex = 0;
+        for (let i = 0; i < headerCells.length; i++) {
+            if (headerCells[i].textContent === "status") {
+                statusIndex = i+1;
+                break;
+            }
+        }
+        return statusIndex
+    }
+
     const tableMain =
         <>
             <Table ref={tableRef} bordered hover striped variant="light">
@@ -109,8 +123,9 @@ const DataTable = (props) => {
                     <tr>
                         {Object.keys(newData[0]).map((key, index, array) => {
                             return (
-                            <th key={key} colSpan={index === array.length - 1 ? 2 : 1}>{key}</th>
-                        )})}
+                                <th key={key} colSpan={index === array.length - 1 ? 2 : 1}>{key}</th>
+                            )
+                        })}
                     </tr>
                 </thead>
                 <tbody>

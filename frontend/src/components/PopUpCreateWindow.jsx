@@ -9,14 +9,13 @@ export function PopUpCreate(props) {
     const description = useRef("")
     const age = useRef("")
 
-    const { active, fnc } = props
+    const { active, fnc, updated, setUpdated } = props
 
     const disableModal = () => {
         fnc(false)
     }
 
     const pushData = () => {
-        disableModal()
         return fetch(
             "http://0.0.0.0/items",
             {
@@ -32,7 +31,7 @@ export function PopUpCreate(props) {
             let status = item.status
             return ([status, body])})
             .then((item) => {
-            console.log(item[0])})
+            console.log(item[0])}).then(() => {setUpdated(updated+1); disableModal()})
     }
 
     const modalWindow = classNames("modal", active ? "modal-dialog-centered" : null)
@@ -50,10 +49,10 @@ export function PopUpCreate(props) {
                         <input ref={title} type="text" className="form-control mb-2" placeholder="Наименование.."/>
 
                         <label className="form-label">Возраст:</label>
-                        <input ref={description} type="number" className="form-control mb-2" placeholder="1-3.."/>
+                        <input ref={age} type="number" className="form-control mb-2" placeholder="1-3.."/>
 
                         <label className="form-label">Комментарий:</label>
-                        <input ref={age} type="text" className="form-control mb-2" placeholder="Комментарий.."/>
+                        <input ref={description} type="text" className="form-control mb-2" placeholder="Комментарий.."/>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={disableModal}>Закрыть</button>
