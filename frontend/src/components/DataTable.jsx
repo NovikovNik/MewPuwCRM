@@ -85,7 +85,8 @@ const DataTable = (props) => {
 
         // Loop through each row and find the elements you need
         rows.forEach((row) => {
-            const statusValue = row.querySelector("td:nth-child(3) > div")
+            console.log(startIndex)
+            const statusValue = row.querySelector(`td:nth-child(2) > div`)
 
             const tmp = getBadgeData(statusValue.parentNode.id)
 
@@ -106,9 +107,10 @@ const DataTable = (props) => {
             <Table ref={tableRef} bordered hover striped variant="light">
                 <thead>
                     <tr>
-                        {Object.keys(newData[0]).map((key, index, array) => (
+                        {Object.keys(newData[0]).map((key, index, array) => {
+                            return (
                             <th key={key} colSpan={index === array.length - 1 ? 2 : 1}>{key}</th>
-                        ))}
+                        )})}
                     </tr>
                 </thead>
                 <tbody>
