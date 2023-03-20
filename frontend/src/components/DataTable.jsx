@@ -4,15 +4,33 @@ import Table from 'react-bootstrap/Table';
 import data from "../mockdata/DataTable";
 import classNames from 'classnames';
 import './custom.css'
+import dataTable from "../mockdata/DataTable";
 
-const DataTable = () => {
+const DataTable = (props) => {
+
     const tableRef = useRef(null);
     const [page, setPage] = useState(1)
+    let newData;
+    let data;
+    let startIndex;
+    let maxIndex;
 
-    let startIndex = 0 + 15 * (page - 1)
-    let maxIndex = 15 + 15 * (page - 1)
+    if (props.table.length > 1) {
+        console.log(props.table)
+        console.log('yep')
+        data = props.table
+        startIndex = 0 + 15 * (page - 1)
+        maxIndex = 15 + 15 * (page - 1)
 
-    const newData = data.slice(startIndex, maxIndex)
+        newData = data.slice(startIndex, maxIndex)
+    } else {
+        data = dataTable
+        startIndex = 0 + 15 * (page - 1)
+        maxIndex = 15 + 15 * (page - 1)
+
+        newData = data.slice(startIndex, maxIndex)
+    }
+
 
     const nextPage = (element) => {
         element.preventDefault()
@@ -27,7 +45,11 @@ const DataTable = () => {
     }
 
     useEffect(() => {
-        findElementsByRow()
+        if (props.table.length > 0) {
+            findElementsByRow()
+        } else {
+            return
+        }
     })
 
     const getBadgeData = (el) => {
@@ -79,14 +101,7 @@ const DataTable = () => {
         });
     };
 
-    const headerLocalisation = () => {
-        const table = tableRef.current;
-        const row = table.querySelector("thead tr");
-        console.log(row)
-
-    }
-
-    return (
+    const tableMain =
         <>
             <Table ref={tableRef} bordered hover striped variant="light">
                 <thead>
@@ -130,6 +145,18 @@ const DataTable = () => {
                     </ul>
                 </nav>
             </div>
+        </>
+
+
+    const errorTable =
+        <>
+            <p>Error while loading</p>
+        </>
+
+
+    return (
+        <>
+            {props.table.length > 0 ? tableMain : errorTable}
         </>
 
     )

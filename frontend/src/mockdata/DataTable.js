@@ -1,4 +1,4 @@
-const data = [
+const dataTable = [
     {
         id: 0,
         name: "Test Name",
@@ -148,4 +148,4 @@ const data = [
     },
 ]
 
-export default data
+export default dataTable
